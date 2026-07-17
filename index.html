@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DnD Tracker</title>
+  </head>
+  <body>
+    <div id="app">
+      <header class="header">
+        <h1>DnD Tracker</h1>
+        <button id="logout-btn" class="btn btn-ghost hidden" type="button">Log out</button>
+      </header>
+
+      <section id="auth-view" class="panel">
+        <h2>Sign in</h2>
+        <p class="hint">Personal tracker — one account for all your devices.</p>
+        <form id="auth-form">
+          <label>
+            Email
+            <input id="email" type="email" required autocomplete="username" />
+          </label>
+          <label>
+            Password
+            <input id="password" type="password" required autocomplete="current-password" />
+          </label>
+          <div class="row">
+            <button class="btn" type="submit">Sign in</button>
+            <button id="signup-btn" class="btn btn-ghost" type="button">Create account</button>
+          </div>
+        </form>
+        <p id="auth-message" class="message" role="status"></p>
+      </section>
+
+      <section id="app-view" class="hidden">
+        <div class="panel">
+          <div class="row spread">
+            <h2>Characters</h2>
+            <button id="new-character-btn" class="btn" type="button">+ New</button>
+          </div>
+          <div id="character-list" class="character-list"></div>
+        </div>
+
+        <div id="inventory-panel" class="panel hidden">
+          <div class="row spread">
+            <h2 id="active-character-name">Inventory</h2>
+            <button id="add-item-btn" class="btn" type="button">Add item</button>
+          </div>
+
+          <div class="inventory-toolbar">
+            <label class="filter-label">
+              Category
+              <select id="filter-category">
+                <option value="all">All</option>
+              </select>
+            </label>
+            <label class="filter-label">
+              Session
+              <select id="filter-session">
+                <option value="all">All</option>
+              </select>
+            </label>
+            <label class="filter-label">
+              Sort
+              <select id="sort-inventory">
+                <option value="name-asc">Name A–Z</option>
+                <option value="name-desc">Name Z–A</option>
+                <option value="category">Category</option>
+                <option value="session">Session acquired</option>
+                <option value="added">Added (oldest first)</option>
+              </select>
+            </label>
+          </div>
+
+          <ul id="inventory-list" class="inventory-list"></ul>
+        </div>
+      </section>
+
+      <p id="app-message" class="message" role="status"></p>
+    </div>
+
+    <div id="add-item-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="add-item-title">
+      <div class="modal-backdrop" data-dismiss="modal"></div>
+      <div class="modal-panel">
+        <h2 id="add-item-title">Add item</h2>
+        <form id="add-item-form">
+          <label>
+            Name
+            <input id="item-name" type="text" required />
+          </label>
+          <label>
+            Quantity
+            <input id="item-qty" type="number" min="0" value="1" required />
+          </label>
+          <label>
+            Category
+            <select id="item-category">
+              <option value="">—</option>
+            </select>
+          </label>
+          <label>
+            Acquired in session
+            <input id="item-acquired-in-session" type="text" />
+          </label>
+          <label>
+            Notes
+            <input id="item-notes" type="text" />
+          </label>
+          <div class="row modal-actions">
+            <button id="add-item-cancel" class="btn btn-ghost" type="button">Cancel</button>
+            <button class="btn" type="submit">Add</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <div id="edit-item-modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="edit-item-title">
+      <div class="modal-backdrop" data-dismiss="modal"></div>
+      <div class="modal-panel">
+        <h2 id="edit-item-title">Edit item</h2>
+        <form id="edit-item-form">
+          <label>
+            Name
+            <input id="edit-item-name" type="text" required />
+          </label>
+          <label>
+            Quantity
+            <input id="edit-item-qty" type="number" min="0" required />
+          </label>
+          <label>
+            Category
+            <select id="edit-item-category">
+              <option value="">—</option>
+            </select>
+          </label>
+          <label>
+            Acquired in session
+            <input id="edit-item-acquired-in-session" type="text" />
+          </label>
+          <label>
+            Notes
+            <input id="edit-item-notes" type="text" />
+          </label>
+          <div class="row modal-actions">
+            <button id="edit-item-cancel" class="btn btn-ghost" type="button">Cancel</button>
+            <button class="btn" type="submit">Update</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
